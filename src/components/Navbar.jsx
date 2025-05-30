@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import InPageNavigation from "./inPageNavigation";
+import InPageNavigation from "./InPageNavigation";
 
 export default function Navbar() {
   return (

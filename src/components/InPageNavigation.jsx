@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+
 function InPageNavigation({ teams, children }) {
   const [index, setIndex] = useState(0);
   let tabline = useRef();
