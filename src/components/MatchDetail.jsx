@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 // import { useParams } from "react-router-dom";
-import InPageNavigation from "./inPageNavigation.jsx";
+import InPageNavigation from "./InPageNavigation.jsx";
 import Team1Details from "./Team1Details.jsx";
 import Team2Details from "./Team2Details.jsx";
 
