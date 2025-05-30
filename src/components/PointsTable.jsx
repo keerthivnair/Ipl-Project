@@ -4,26 +4,26 @@ import cross from "../assets/cross.png";
 
 export default function PointsTable() {
   const [pointsTableData, setPoints] = useState([]);
-    // async function fetchData() {
-    //   const url =
-    //     "https://cricbuzz-cricket.p.rapidapi.com/stats/v1/series/4061/points-table";
-    //   const options = {
-    //     method: "GET",
-    //     headers: {
-    //       "x-rapidapi-key": import.meta.env.VITE_API_KEY,
-    //       "x-rapidapi-host": "cricbuzz-cricket.p.rapidapi.com",
-    //     },
-    //   };
+  async function fetchData() {
+    const url =
+      "https://cricbuzz-cricket.p.rapidapi.com/stats/v1/series/9237/points-table";
+    const options = {
+      method: "GET",
+      headers: {
+        "x-rapidapi-key": "4a5736bbc4msh30701db9816858ap12937fjsn9414e28cb5a1",
+        "x-rapidapi-host": "cricbuzz-cricket.p.rapidapi.com",
+      },
+    };
 
-    //   try {
-    //     const response = await fetch(url, options);
-    //     const result = await response.text();
-    //     console.log(result);
-    //     setPoints(result);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // }
+    try {
+      const response = await fetch(url, options);
+      const result = await response.json();
+      console.log(result);
+      setPoints(result.pointsTable[0].pointsTableInfo);
+    } catch (error) {
+      console.error(error);
+    }
+  }
   let data = {
     pointsTable: [
       {
@@ -1818,25 +1818,27 @@ export default function PointsTable() {
   };
 
   useEffect(() => {
-    // fetchData();
-    setPoints(data.pointsTable[0].pointsTableInfo);
+    fetchData();
+    // setPoints(data.pointsTable[0].pointsTableInfo);
   }, []);
 
   return (
     <div className="w-full p-3">
       <table className="w-full">
-        <tr className="text-center w-full h-[50px]">
-          <td className="text-left w-[30%] md:w-[40%]">Team</td>
-          <td>M</td>
-          <td>W</td>
-          <td>L</td>
-          <td>NRR</td>
-          <td>Pts</td>
-          <td>Last 5</td>
-        </tr>
+        <thead>
+          <tr className="text-center w-full h-[50px]">
+            <td className="text-left w-[30%] md:w-[40%]">Team</td>
+            <td>M</td>
+            <td>W</td>
+            <td>L</td>
+            <td>NRR</td>
+            <td>Pts</td>
+            <td>Last 5</td>
+          </tr>
+        </thead>
 
         {pointsTableData.length === 0 ? (
-          <h1>Loading...</h1>
+          <tr>Loading...</tr>
         ) : (
           // <div className="flex gap-4">
           //   <h1>Team</h1>
@@ -1859,34 +1861,36 @@ export default function PointsTable() {
               },
               i
             ) => (
-              <tr className="text-center w-full border-t border-gray-300 h-[50px]">
-                <div className="flex gap-2 md:gap-4 mt-3">
-                  <td>{i + 1}</td>
-                  <img
-                    className="w-6 object-contain"
-                    src="https://www.kindpng.com/picc/m/504-5047507_rcb-logo-royal-challengers-bangalore-png-royal-challengers.png"
-                    alt="Rcb Logo Royal Challengers Bangalore Png - Royal Challengers Bangalore Logo, Transparent Png@kindpng.com"
-                  ></img>
-                  <td>{teamName}</td>
-                </div>
-
-                <td>{matchesPlayed}</td>
-                <td>{matchesWon}</td>
-                <td>{matchesLost}</td>
-                <td>{nrr}</td>
-                <td>{points}</td>
-                <td className="text-right">
-                  <div className="flex gap-1 justify-center">
-                    {form.map((item) =>
-                      item == "W" ? (
-                        <img src={tick} alt="" className="w-4 h-4" />
-                      ) : (
-                        <img src={cross} alt="" className="w-4 h-4" />
-                      )
-                    )}
+              <tbody>
+                <tr className="text-center w-full border-t border-gray-300 h-[50px]">
+                  <div className="flex gap-2 md:gap-4 mt-3">
+                    <td>{i + 1}</td>
+                    <img
+                      className="w-6 object-contain"
+                      src="https://www.kindpng.com/picc/m/504-5047507_rcb-logo-royal-challengers-bangalore-png-royal-challengers.png"
+                      alt="Rcb Logo Royal Challengers Bangalore Png - Royal Challengers Bangalore Logo, Transparent Png@kindpng.com"
+                    ></img>
+                    <td>{teamName}</td>
                   </div>
-                </td>
-              </tr>
+
+                  <td>{matchesPlayed}</td>
+                  <td>{matchesWon}</td>
+                  <td>{matchesLost}</td>
+                  <td>{nrr}</td>
+                  <td>{points}</td>
+                  <td className="text-right">
+                    <div className="flex gap-1 justify-center">
+                      {form.map((item) =>
+                        item == "W" ? (
+                          <img src={tick} alt="" className="w-4 h-4" />
+                        ) : (
+                          <img src={cross} alt="" className="w-4 h-4" />
+                        )
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
             )
           )
         )}

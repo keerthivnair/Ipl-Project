@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useEffect } from "react";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import InPageNavigation from "./InPageNavigation.jsx";
 import Team1Details from "./Team1Details.jsx";
 import Team2Details from "./Team2Details.jsx";
 
 function MatchDetail() {
-  // let { id } = useParams();
+  let { id } = useParams();
   //   console.log(id);
   const [matchDetail, setMatchDetail] = useState([]);
   let data = {
@@ -1057,35 +1057,35 @@ function MatchDetail() {
     ],
   };
 
-  // async function fetchMatchDetail() {
-  //   const url = `https://cricbuzz-cricket.p.rapidapi.com/mcenter/v1/${id}`;
-  //   const options = {
-  //     method: "GET",
-  //     headers: {
-  //       "x-rapidapi-key": import.meta.env.VITE_API_KEY,
-  //       "x-rapidapi-host": "cricbuzz-cricket.p.rapidapi.com",
-  //     },
-  //   };
+  async function fetchMatchDetail() {
+    const url = `https://cricbuzz-cricket.p.rapidapi.com/mcenter/v1/${id}`;
+    const options = {
+      method: "GET",
+      headers: {
+        "x-rapidapi-key": import.meta.env.VITE_API_KEY,
+        "x-rapidapi-host": "cricbuzz-cricket.p.rapidapi.com",
+      },
+    };
 
-  //   try {
-  //     const response = await fetch(url, options);
-  //     const result = await response.json();
-  //     setMatchDetail(result);
-  //     // console.log(result);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
+    try {
+      const response = await fetch(url, options);
+      const result = await response.json();
+      setMatchDetail(result);
+      // console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   useEffect(() => {
-    // fetchMatchDetail();
-    setMatchDetail(data);
+    fetchMatchDetail();
+    // setMatchDetail(data);
     // console.log(console.log(matchDetail))
   }, []);
 
   return (
     <>
-    <div className='text-2xl font-bold text-center m-5'>Match Detail</div>
+      <div className="text-2xl font-bold text-center m-5">Match Detail</div>
       {matchDetail.length <= 0 ? (
         <h1>Loading....</h1>
       ) : (

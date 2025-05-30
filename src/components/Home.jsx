@@ -4355,32 +4355,32 @@ function Home() {
     return singleMatch["matchDetailsMap"];
   });
 
-  // async function fetchData() {
-  //   const url = "https://cricbuzz-cricket.p.rapidapi.com/series/v1/9237";
-  //   const options = {
-  //     method: "GET",
-  //     headers: {
-  //       "x-rapidapi-key": import.meta.env.VITE_API_KEY,
-  //       "x-rapidapi-host": "cricbuzz-cricket.p.rapidapi.com",
-  //     },
-  //   };
+  async function fetchData() {
+    const url = "https://cricbuzz-cricket.p.rapidapi.com/series/v1/9237";
+    const options = {
+      method: "GET",
+      headers: {
+        "x-rapidapi-key": "4a5736bbc4msh30701db9816858ap12937fjsn9414e28cb5a1",
+        "x-rapidapi-host": "cricbuzz-cricket.p.rapidapi.com",
+      },
+    };
 
-  //   try {
-  //     const response = await fetch(url, options);
-  //     const result = await response.json();
-  //     let filterData = result.matchDetails.filter((singleMatch) => {
-  //       return singleMatch["matchDetailsMap"];
-  //     });
-  //     setMatchesData(filterData);
-  //     // console.log(result);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
+    try {
+      const response = await fetch(url, options);
+      const result = await response.json();
+      let filterData = result.matchDetails.filter((singleMatch) => {
+        return singleMatch["matchDetailsMap"];
+      });
+      setMatchesData(filterData);
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   useEffect(() => {
-    setMatchesData(filterData);
-    // fetchData();
+    // setMatchesData(filterData);
+    fetchData();
   }, []);
   // console.log(matchesData);
 

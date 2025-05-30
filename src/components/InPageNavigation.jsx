@@ -19,7 +19,14 @@ function InPageNavigation({ teams, children }) {
   }
   return (
     <div className=" w-full ">
-      <div className={"bg-blue-800 w-full relative flex justify-between items-end" + (teams.length > 2 ? ' h-[100px] border-b border-gray-300' : ' h-[50px]')}>
+      <div
+        className={
+          "bg-blue-800 w-full relative flex justify-between items-end" +
+          (teams.length > 2
+            ? " h-[100px] border-b border-gray-300"
+            : " h-[50px]")
+        }
+      >
         {teams.length > 2
           ? teams.map(({ path, title }, id) => (
               <Link to={path}>
@@ -40,7 +47,7 @@ function InPageNavigation({ teams, children }) {
           : teams.map((team, id) => (
               <button
                 ref={id == 0 ? btn : null}
-                className={  `btn   text-sm md:text-xl m-1 font-bold w-[50%] px-10 py-2 rounded-md cursor-pointer  ${
+                className={`btn   text-sm md:text-xl m-1 font-bold w-[50%] px-10 py-2 rounded-md cursor-pointer  ${
                   index === id ? "text-white bg-gray-200/30" : "text-gray-200"
                 }`}
                 key={id}
@@ -51,7 +58,10 @@ function InPageNavigation({ teams, children }) {
                 <h1>{team}</h1>
               </button>
             ))}
-        <hr ref={tabline} className="border-white border-2 absolute  duration-300" />
+        <hr
+          ref={tabline}
+          className="border-white border-2 absolute  duration-300"
+        />
       </div>
 
       {teams.length > 2 ? "" : children[index]}
